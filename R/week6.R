@@ -19,7 +19,7 @@ citations_tbl <- tibble(line = seq_along(citations_txt), cite = citations_txt) %
   mutate(year = str_extract(cite, pattern = "\\d{4}")) %>%
   mutate(page_start = str_extract(cite, pattern = "\\d{1,4}(?=-)")) %>%
   mutate(perf_ref = grepl("[Pp]erformance", cite)) %>%
-  mutate(title = str_extract(cite, pattern = "(?<=\\). )\\b(?:\\S+? )*\\S+?\\. ")) %>%
+  mutate(title = str_extract(cite, pattern = "(?<=\\)\\.*? )\\b(?:\\S+? )*\\S+?[\\.\?] ")) %>%
   mutate(first_author = str_extract(cite, pattern = "^\\w*, \\w\\.(?: \\w\\.)?"))
 
 print(sum(citations_tbl$first_author != "", na.rm = TRUE))
